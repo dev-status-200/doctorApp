@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, memo } from 'react';
 import {
   Text,
   View,
@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import AppIntroSlider from 'react-native-app-intro-slider';
+import AntdIcons from 'react-native-vector-icons/AntDesign';
  
 const slides = [
   {
@@ -31,9 +32,10 @@ const slides = [
   }
 ];
 
-function App() {
+function AppIntro() {
 
   let sliderRef = useRef()
+  const [slide, setSlide] = useState(0);
   const [showRealApp, setShowRealApp] = useState(false);
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = { backgroundColor: isDarkMode ? Colors.darker : Colors.lighter };
@@ -41,7 +43,7 @@ function App() {
   const renderItem = ({ item }) => {
     return (
     <View style={styles.slide}>
-      <TouchableOpacity onPress={()=>sliderRef.goToSlide(0)}>
+      <TouchableOpacity onPress={()=>{sliderRef.goToSlide(0); setSlide(0)}}>
       <CircleButton  />
       </TouchableOpacity>
       <Image source={item.image} style={{marginTop:"1%"}} />
@@ -77,15 +79,16 @@ function App() {
   };
   const CircleButton = () => {
     return(
-      <View style={styles.circleBtn}>
-        <Text style={{color:'white'}}>{"<"}</Text>
-      </View>
+    <View style={{marginLeft:20, marginTop:10}}>
+        {slide!="0"&&<AntdIcons name="leftcircle" color={"#D86321"} size={30} />}
+        {slide=="0"&&<View style={{marginTop:30}}></View>}
+    </View>
     )
   }
-
+  
   return (
     <AppIntroSlider 
-      onSlideChange={(e)=>console.log(e)}
+      onSlideChange={(e)=>setSlide(e)}
       ref={component => {sliderRef = component}}
       renderItem={renderItem} 
       data={slides} 
@@ -93,6 +96,7 @@ function App() {
       renderDoneButton={DoneButton}
       renderNextButton={NextButton}
       showSkipButton
+      onSkip={()=>{setSlide(2); sliderRef.goToSlide(2);}}
       renderSkipButton={SkipButton}
       dotStyle={styles.dotStyle}
       activeDotStyle={styles.activeDotStyle}
@@ -142,12 +146,12 @@ const styles = StyleSheet.create({
     bottom:"85%"
   },
   slideHeading:{
-    fontSize:27,
+    fontSize:24,
     color:'black'
   },
   slideText:{
     marginTop:10,
-    fontSize:17
+    fontSize:16
   },
   circleBtn:{
     backgroundColor:"#D86321",
@@ -169,4 +173,4 @@ const styles = StyleSheet.create({
     paddingBottom:0
   }
 });
-export default App;
+export default memo(AppIntro);
