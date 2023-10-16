@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { delay } from "./functions/delay"
 import {
+  View,
+  Text,
   StatusBar,
   StyleSheet,
   SafeAreaView,
@@ -11,13 +14,17 @@ import AppIntro from "./components/Shared/AppIntro"
 
 function App() {
 
+  const [hide, setHide] = useState(false)
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : "white",
   };
-
-  useEffect(() => {
+  const hideScreen = async() => {
+    await delay(2000)
     SplashScreen.hide();
+  }
+  useEffect(() => {
+    hideScreen()
   }, []);
 
   return (
@@ -26,7 +33,9 @@ function App() {
       barStyle={isDarkMode ? 'light-content' : 'dark-content'}
       backgroundColor={backgroundStyle.backgroundColor}
     />
-    <AppIntro/>
+    {!hide && <AppIntro setHide={setHide} />}
+    {hide && <View style={{flex:1, justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20}}>Login Screen</Text></View>}
+
   </SafeAreaView>
   );
 }

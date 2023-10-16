@@ -32,22 +32,23 @@ const slides = [
   }
 ];
 
-function AppIntro() {
+function AppIntro({setHide}) {
 
   let sliderRef = useRef()
   const [slide, setSlide] = useState(0);
-  const [showRealApp, setShowRealApp] = useState(false);
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = { backgroundColor: isDarkMode ? Colors.darker : Colors.lighter };
 
   const renderItem = ({ item }) => {
     return (
     <View style={styles.slide}>
-      <TouchableOpacity onPress={()=>{sliderRef.goToSlide(0); setSlide(0)}}>
-      <CircleButton  />
-      </TouchableOpacity>
-      <Image source={item.image} style={{marginTop:"1%"}} />
-      <View style={{marginTop:'3%', padding:20}}>
+      <View style={{width:'100%', padding:15}}>
+        <TouchableOpacity onPress={()=>{sliderRef.goToSlide(0); setSlide(0)}}>
+          <CircleButton />
+        </TouchableOpacity>
+      </View>
+      <Image source={item.image} style={styles.logo} />
+      <View style={{marginTop:'5%', padding:20}}>
         <Text style={styles.slideHeading}>{item.title}</Text>
         <Text style={styles.slideText}>{item.text}</Text>
       </View>
@@ -56,7 +57,7 @@ function AppIntro() {
   }
 
   const onDone = () => {
-    setShowRealApp(false)
+    setHide(true);
   }
   const DoneButton = () => {
     return (
@@ -79,9 +80,9 @@ function AppIntro() {
   };
   const CircleButton = () => {
     return(
-    <View style={{marginLeft:20, marginTop:10}}>
-        {slide!="0"&&<AntdIcons name="leftcircle" color={"#D86321"} size={30} />}
-        {slide=="0"&&<View style={{marginTop:30}}></View>}
+    <View>
+      {slide!="0"&&<AntdIcons name="leftcircle" color={"#D86321"} size={30} />}
+      {slide=="0"&&<View style={{marginTop:30}}></View>}
     </View>
     )
   }
@@ -104,9 +105,10 @@ function AppIntro() {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor:'#FKG75J'
+  logo: {
+    width: 346,
+    height: 336,
+    marginTop:"6%"
   },
   buttonBase: {
     width: 100,
@@ -115,21 +117,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: "#000",
-    shadowOffset: {
-        width: 0,
-        height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
   },
   btnText:{
     color:'white'
   },
   slide:{
-    backgroundColor:'#FFFFFF'
+    flex:1,
+    backgroundColor:'#FFFFFF',
+    alignContent:'center',
+    alignItems:'center',
   },
   dotStyle:{
     backgroundColor:'silver',
