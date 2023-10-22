@@ -28,7 +28,7 @@ const RNSelect = ({label, control, name, placeholder, defaul, list, required}) =
                     }}
                     value={value} 
                     setValue={onChange}
-                    //onChangeValue={onChange}
+                    onChangeValue={onChange}
                 />
             )}
             name={name}

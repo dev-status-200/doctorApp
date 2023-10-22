@@ -16,10 +16,8 @@ function HomeScreen({navigation}) {
 
   return (
     <View style={{flex:1}}>
-
       { !hide && <AppIntro setHide={setHide} /> }
       { hide && <Login navigation={navigation} /> }
-    
     </View>
   );
 }
@@ -50,4 +48,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-export default App;
+export default React.memo(App);
