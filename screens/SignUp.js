@@ -1,4 +1,4 @@
-import { View } from "react-native"
+import React from 'react'
 import SignUpCompA from "../components/Screens.js/SignUp/SignUpCompA";
 
 const SignUp = ({navigation}) => {
@@ -7,4 +7,4 @@ const SignUp = ({navigation}) => {
   )
 }
 
-export default SignUp
+export default React.memo(SignUp)

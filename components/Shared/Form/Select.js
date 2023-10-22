@@ -1,33 +1,38 @@
 import { StyleSheet, View, Text } from 'react-native';
-import { useController } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import DropDownPicker from 'react-native-dropdown-picker';
 import React, { useState } from 'react';
 
-const RNSelect = ({label, control, name, placeholder, defaul, list}) => {
+const RNSelect = ({label, control, name, placeholder, defaul, list, required}) => {
 
-    const { field } = useController({ control, defaultValue:defaul, name });
     const [open, setOpen] = useState(false);
     const [items, setItems] = useState(list);
 
     return(
         <View style={{width:"100%"}}>
             {label && <Text style={styles.label}>{label}</Text> }
-            <DropDownPicker
-                open={open}
-                setOpen={setOpen}
-                items={items}
-                setItems={setItems}
-                placeholder={placeholder}
-                style={{
-                    backgroundColor:"white",
-                    borderColor:"silver",
-                    borderRadius:12,
-                    marginTop:5
-                }}
-                value={field.value} 
-                setValue={field.onChange}
-                onChangeValue={field.onChange}
-            />
+            <Controller
+            control={control}
+            rules={{ required: required }}
+            render={({ field: { onChange, onBlur, value } }) => (
+                <DropDownPicker
+                    open={open}
+                    setOpen={setOpen}
+                    items={items}
+                    placeholder={placeholder}
+                    style={{
+                        backgroundColor:"white",
+                        borderColor:"silver",
+                        borderRadius:12,
+                        marginTop:5
+                    }}
+                    value={value} 
+                    setValue={onChange}
+                    //onChangeValue={onChange}
+                />
+            )}
+            name={name}
+        />  
         </View>
     )
 }

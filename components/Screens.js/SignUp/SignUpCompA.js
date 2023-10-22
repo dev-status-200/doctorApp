@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SectionList } from 'react-native';
 import AntdIcons from 'react-native-vector-icons/AntDesign';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useForm, useController } from "react-hook-form";
 import RNInput from "../../Shared/Form/TextInput";
 import RNSelect from "../../Shared/Form/Select";
 import RNCheckBox from "../../Shared/Form/CheckBox";
+import ErrorA from '../../Shared/ErrorA';
 
 const Header = (props) => {
     return(
@@ -30,7 +31,7 @@ const SignUpCompA = ({navigation}) => {
 
     const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
-            agree: true,
+            agree: false,
         }
     });
     const onSubmit = (data) => {
@@ -40,87 +41,103 @@ const SignUpCompA = ({navigation}) => {
   return (
     <View style={styles.container}>
         <Header name={"Sign Up"} navigation={navigation} />
-        <View style={{paddingLeft:20, paddingRight:20, paddingTop:10}}>
-            <View style={styles.row}>
-                <View style={styles.md}>
-                    <RNInput control={control} name="firstName" placeholder={"First Name"} label={"Name"} required={true} />
+        <SectionList
+            sections={[{data: ['Pizza']}]}
+            keyExtractor={(item, index) => item + index}
+            renderItem={({item}) => (
+                <View style={{paddingLeft:20, paddingRight:20, paddingTop:10, paddingBottom:20}}>
+                <View style={styles.row}>
+                    <View style={styles.md}>
+                        <RNInput control={control} name="firstName" placeholder={"First Name"} label={"Name"} required={true} />
+                    </View>
+                    <View style={styles.md}>
+                        <RNInput control={control} name="lastName" placeholder={"Last Name"} label={" "} required={true} />
+                    </View>
                 </View>
-                <View style={styles.md}>
-                    <RNInput control={control} name="lastName" placeholder={"Last Name"} label={" "} />
+                {(errors.firstName || errors.lastName) && <ErrorA txt={"Full Name is Required"} />}
+
+                <View style={[styles.row, styles.mt2]}>
+                    <View style={styles.xl}>
+                        <RNInput control={control} name="email" placeholder={"Enter your email"} label={"E-mail"} required={true} />
+                    </View>
                 </View>
-            </View>
-            {errors.firstName && <Text>This is required.</Text>}
-            <View style={[styles.row, styles.mt2]}>
-                <View style={styles.xl}>
-                    <RNInput control={control} name="email" placeholder={"Enter your email"} label={"E-mail"} />
+                {errors.email && <ErrorA txt={"Email is Required"} />}
+
+                <View style={[styles.row, styles.mt2]}>
+                    <View style={styles.xl}>
+                        <RNInput control={control} name="phone" placeholder={"Enter your phone number"} label={"Phone Number"} required={true} />
+                    </View>
                 </View>
-            </View>
-            <View style={[styles.row, styles.mt2]}>
-                <View style={styles.xl}>
-                    <RNInput control={control} name="phone" placeholder={"Enter your phone number"} label={"Phone Number"} />
+                {errors.phone && <ErrorA txt={"Contact No. is Required"} />}
+
+                <View style={[styles.row, styles.mt2, { position:'relative', zIndex:2 }]}>
+                    <View style={styles.xl}>
+                        <RNSelect control={control} name="gender" placeholder={"Select your Gender"} label={"Gender"} required={true}
+                            list={[
+                                {label:'Male', value:'Male'},
+                                {label:'Female', value:'Female'},
+                            ]}
+                        />
+                    </View>
                 </View>
-            </View>
-            <View style={[styles.row, styles.mt2, { position:'relative', zIndex:2 }]}>
-                <View style={styles.xl}>
-                    <RNSelect control={control} name="gender" placeholder={"Select your Gender"} label={"Gender"}
-                        list={[
-                            {label:'Male', value:'Male'},
-                            {label:'Female', value:'Female'},
-                        ]}
-                    />
+                {errors.gender && <ErrorA txt={"Gender is Required"} />}
+
+                <View style={[styles.row, styles.mt2, { position:'relative', zIndex:1 }]}>
+                    <View style={styles.sm}>
+                        <RNSelect control={control} name="day" placeholder={"Day"} label={"Date of Birth"} required={true}
+                            list={[
+                                {label:'1', value:'1'},
+                                {label:'2', value:'2'},
+                                {label:'3', value:'3'},
+                            ]}
+                        />
+                    </View>
+                    <View style={styles.sm}>
+                        <RNSelect control={control} name="month" placeholder={"Month"} label={" "} required={true}
+                            list={[
+                                {label:'01', value:'01'},
+                                {label:'02', value:'02'},
+                                {label:'03', value:'03'},
+                            ]}
+                        />
+                    </View>
+                    <View style={styles.sm}>
+                        <RNSelect control={control} name="year" placeholder={"Year"} label={" "} required={true}
+                            list={[
+                                {label:'2005', value:'2005'},
+                                {label:'2004', value:'2004'},
+                                {label:'2003', value:'2003'},
+                                {label:'2002', value:'2002'},
+                                {label:'2001', value:'2001'},
+                            ]}
+                        />
+                    </View>
                 </View>
-            </View>
-            <View style={[styles.row, styles.mt2, { position:'relative', zIndex:1 }]}>
-                <View style={styles.sm}>
-                    <RNSelect control={control} name="day" placeholder={"Day"} label={"Date of Birth"}
-                        list={[
-                            {label:'1', value:'1'},
-                            {label:'2', value:'2'},
-                            {label:'3', value:'3'},
-                        ]}
-                    />
+                {(errors.day||errors.month||errors.year) && <ErrorA txt={"Date of Birth is required"} />}
+
+                <View style={[styles.row, styles.mt2]}>
+                    <View style={styles.md}>
+                        <RNInput control={control} name="height" placeholder={"in inches"} label={"Height"} />
+                    </View>
+                    <View style={styles.md}>
+                        <RNInput control={control} name="weight" placeholder={"In KGs"} label={"Weight"} />
+                    </View>
                 </View>
-                <View style={styles.sm}>
-                    <RNSelect control={control} name="month" placeholder={"Month"} label={" "} 
-                        list={[
-                            {label:'01', value:'01'},
-                            {label:'02', value:'02'},
-                            {label:'03', value:'03'},
-                        ]}
-                    />
+                
+                <View style={{flexDirection:'row', paddingRight:32, marginTop:20}}>
+                    <RNCheckBox control={control} name="agree" required={true} />
+                    <Text style={{color:'grey'}}>
+                        By creating your account you have to agree with our 
+                        <Text style={{fontWeight:'600', color:'black'}}> Teams and Conditions</Text>
+                    </Text>
                 </View>
-                <View style={styles.sm}>
-                    <RNSelect control={control} name="year" placeholder={"Year"} label={" "} 
-                        list={[
-                            {label:'2005', value:'2005'},
-                            {label:'2004', value:'2004'},
-                            {label:'2003', value:'2003'},
-                            {label:'2002', value:'2002'},
-                            {label:'2001', value:'2001'},
-                        ]}
-                    />
+                {errors.agree && <ErrorA txt={"This is Required"} />}
+                <TouchableOpacity style={styles.buttonBase} onPress={handleSubmit(onSubmit)}>
+                    <Text style={{color:'white'}}>Submit</Text>
+                </TouchableOpacity>
                 </View>
-            </View>
-            <View style={[styles.row, styles.mt2]}>
-                <View style={styles.md}>
-                    <RNInput control={control} name="height" placeholder={"in inches"} label={"Height"} />
-                </View>
-                <View style={styles.md}>
-                    <RNInput control={control} name="weight" placeholder={"In KGs"} label={"Weight"} />
-                </View>
-            </View>
-            <View style={{flexDirection:'row', paddingRight:32, marginTop:20}}>
-                <RNCheckBox control={control} name="agree" required={true} />
-                <Text style={{color:'grey'}}>
-                    By creating your account you have to agree with our 
-                    <Text style={{fontWeight:'600', color:'black'}}> Teams and Conditions</Text>
-                </Text>
-            </View>
-            {errors.agree && <Text>This is required.</Text>}
-            <TouchableOpacity style={styles.buttonBase} onPress={handleSubmit(onSubmit)}>
-                <Text style={{color:'white'}}>Submit</Text>
-            </TouchableOpacity>
-        </View>
+            )}
+        />
     </View>
 )};
 
@@ -150,7 +167,7 @@ const styles = StyleSheet.create({
     md:{width:'49%'},
     xl:{width:'100%'},
     mt2:{marginTop:12},
-    mb2:{marginBottom:20},
+    mb2:{marginBottom:20}
 });
 
-export default SignUpCompA;
+export default React.memo(SignUpCompA);
