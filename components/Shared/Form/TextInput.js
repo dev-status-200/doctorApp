@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
         fontSize:17
     },
     input:{
-        borderColor:'silver', borderWidth:1, borderRadius:12, padding:13, paddingLeft:17, marginTop:5, height:45, color:'black'
+        borderColor:'#E6E6E6', borderWidth:1, borderRadius:10, paddingLeft:17, marginTop:5, height:40, color:'black'
     },
 });

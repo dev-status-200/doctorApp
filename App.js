@@ -7,6 +7,7 @@ import Login from './screens/Login';
 import SignUp from './screens/SignUp';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { PaperProvider } from 'react-native-paper';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,13 +33,15 @@ function App() {
 
   return (
   <SafeAreaView style={[styles.container, {backgroundColor: "white"}]}>
-  <StatusBar barStyle={'dark-content'} backgroundColor={"white"} />
-  <NavigationContainer>
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Signup" component={SignUp} />
-      <Stack.Screen name="Home" component={HomeScreen} />
-    </Stack.Navigator>
-  </NavigationContainer>
+    <StatusBar barStyle={'dark-content'} backgroundColor={"white"} />
+    <PaperProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Signup" component={SignUp} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   </SafeAreaView>
   );
 }

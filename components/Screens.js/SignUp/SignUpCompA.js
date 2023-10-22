@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SectionList } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, SectionList } from 'react-native';
 import AntdIcons from 'react-native-vector-icons/AntDesign';
 import { useForm } from "react-hook-form";
 import RNInput from "../../Shared/Form/TextInput";
 import RNSelect from "../../Shared/Form/Select";
 import RNCheckBox from "../../Shared/Form/CheckBox";
 import ErrorA from '../../Shared/ErrorA';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Header = (props) => {
     return(
@@ -26,16 +27,28 @@ const Header = (props) => {
     )
 }
 
-const SignUpCompA = ({navigation}) => {
+const SignUpCompA = ({navigation, onSubmit}) => {
 
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
-            agree: false,
+            agree: true,
         }
     });
-    const onSubmit = (data) => {
-        console.log(data)
-    }
+
+    useEffect(() => {
+        getData()
+    }, [])
+    
+    const getData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('formA');
+          if (value !== null) {
+            reset(JSON.parse(value))
+          }
+        } catch (e) {
+          // error reading value
+        }
+    };
 
   return (
     <View style={styles.container}>
@@ -123,7 +136,7 @@ const SignUpCompA = ({navigation}) => {
                 </View>
             </View>
             
-            <View style={{flexDirection:'row', paddingRight:32, marginTop:20, marginBottom:10}}>
+            <View style={{flexDirection:'row', paddingRight:32, marginTop:20, marginBottom:10, marginTop:15}}>
                 <RNCheckBox control={control} name="agree" required={true} />
                 <Text style={{color:'grey'}}>
                     By creating your account you have to agree with our 
@@ -131,9 +144,13 @@ const SignUpCompA = ({navigation}) => {
                 </Text>
             </View>
             {errors.agree && <ErrorA txt={"Terms and Conditions shoulde be agreed"} />}
+            
+            <View style={{marginTop:10}}>
             <TouchableOpacity style={styles.buttonBase} onPress={handleSubmit(onSubmit)}>
-                <Text style={{color:'white'}}>Submit</Text>
+                <Text style={{color:'white'}}>Next</Text>
             </TouchableOpacity>
+            </View>
+
         </View>
         )}
     />
@@ -165,7 +182,7 @@ const styles = StyleSheet.create({
     sm:{width:'30%'},
     md:{width:'49%'},
     xl:{width:'100%'},
-    mt2:{marginTop:12},
+    mt2:{marginTop:20},
     mb2:{marginBottom:20}
 });
 
