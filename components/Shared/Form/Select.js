@@ -24,7 +24,7 @@ const RNSelect = ({label, control, name, placeholder, defaul, list, required}) =
                         backgroundColor:"white",
                         borderColor:"silver",
                         borderRadius:12,
-                        marginTop:5
+                        marginTop:5,
                     }}
                     value={value} 
                     setValue={onChange}
@@ -40,8 +40,8 @@ const RNSelect = ({label, control, name, placeholder, defaul, list, required}) =
 export default React.memo(RNSelect)
 
 const styles = StyleSheet.create({
-      label:{
-          color:'black',
-          fontSize:17
-      },
+    label:{
+        color:'black',
+        fontSize:17
+    },
 });
