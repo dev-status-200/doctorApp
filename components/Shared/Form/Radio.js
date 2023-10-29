@@ -1,7 +1,7 @@
 import { Controller } from "react-hook-form";
-import RadioGroup from 'react-native-radio-button-group';
 import React from 'react';
 import { View, Text, StyleSheet } from "react-native"
+import RadioGroup from 'react-native-radio-buttons-group';
 
 const RNCheckBox = ({control, name, radios, values, label}) => {
     
@@ -11,12 +11,11 @@ const RNCheckBox = ({control, name, radios, values, label}) => {
             <Controller
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
-                    <RadioGroup
-                        options={radios}
-                        horizontal={true}
-                        circleStyle={{ fillColor: 'orange', borderColor: 'orange' }}
-                        onChange={onChange}
-                        activeButtonId={values[name]}
+                    <RadioGroup 
+                        radioButtons={radios}
+                        layout='row'
+                        onPress={onChange}
+                        selectedId={value}
                     />
                 )}
                 name={name}

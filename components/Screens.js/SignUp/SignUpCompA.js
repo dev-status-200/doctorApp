@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, SectionList } from 'react-native';
 import AntdIcons from 'react-native-vector-icons/AntDesign';
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import RNInput from "../../Shared/Form/TextInput";
 import RNSelect from "../../Shared/Form/Select";
 import RNCheckBox from "../../Shared/Form/CheckBox";
@@ -31,14 +31,15 @@ const SignUpCompA = ({navigation, onSubmit}) => {
 
     const { control, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
-            agree: true,
+            agree:true,
         }
     });
+    const values = useWatch({ control })
 
     useEffect(() => {
         getData()
     }, [])
-    
+
     const getData = async () => {
         try {
           const value = await AsyncStorage.getItem('formA');
@@ -98,9 +99,9 @@ const SignUpCompA = ({navigation, onSubmit}) => {
                 <View style={styles.sm}>
                     <RNSelect control={control} name="day" placeholder={"Day"} label={"Date of Birth"} required={true}
                         list={[
-                            {label:'1', value:'1'},
-                            {label:'2', value:'2'},
-                            {label:'3', value:'3'},
+                            {label:'01', value:'01'},
+                            {label:'02', value:'02'},
+                            {label:'03', value:'03'},
                         ]}
                     />
                 </View>
@@ -138,7 +139,7 @@ const SignUpCompA = ({navigation, onSubmit}) => {
             
             <View style={{flexDirection:'row', paddingRight:32, marginTop:20, marginBottom:10, marginTop:15}}>
                 <RNCheckBox control={control} name="agree" required={true} />
-                <Text style={{color:'grey'}}>
+                <Text style={{color:'grey', marginLeft:6}}>
                     By creating your account you have to agree with our 
                     <Text style={{fontWeight:'600', color:'black'}}> Terms and Conditions</Text>
                 </Text>

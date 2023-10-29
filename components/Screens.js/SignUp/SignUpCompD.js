@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, SectionList } from 'react-native';
 import AntdIcons from 'react-native-vector-icons/AntDesign';
 import { useForm } from "react-hook-form";
-import RNInput from "../../Shared/Form/TextInput";
-import RNSelect from "../../Shared/Form/Select";
-import ErrorA from '../../Shared/ErrorA';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNCheckBox from "../../Shared/Form/CheckBox";
 
@@ -49,7 +46,6 @@ const SignUpCompD = ({setForm, onSubmit}) => {
             reset(JSON.parse(value))
           }
         } catch (e) {
-          console.log(e)
         }
     };
 
@@ -63,72 +59,69 @@ const SignUpCompD = ({setForm, onSubmit}) => {
         <View style={{paddingLeft:22, paddingRight:22, paddingTop:10, paddingBottom:20}}>
             <Text style={{color:'black', fontSize:15, marginBottom:10}}>Please Check All the boxes which applied to your or in your Family</Text>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="one"  />
-                <Text style={{color:'grey', marginTop:3}}>Heart diseases & disorders*</Text>
+                <RNCheckBox control={control} name="heart"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Heart diseases & disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="two"  />
-                <Text style={{color:'grey', marginTop:3}}>Intellectual disabilities*</Text>
+                <RNCheckBox control={control} name="intellectual"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Intellectual disabilities*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="three"  />
-                <Text style={{color:'grey', marginTop:3}}>Immunodeficiency diseases&disorders*</Text>
+                <RNCheckBox control={control} name="immunoDeficiency"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Immunodeficiency diseases & disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="four"  />
-                <Text style={{color:'grey', marginTop:3}}>Kidney diseases & disorders*</Text>
+                <RNCheckBox control={control} name="kidney"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Kidney diseases & disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="five"  />
-                <Text style={{color:'grey', marginTop:3}}>Lung diseases & disorders*</Text>
+                <RNCheckBox control={control} name="lung"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Lung diseases & disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="six"  />
-                <Text style={{color:'grey', marginTop:3}}>Mental illness*</Text>
+                <RNCheckBox control={control} name="mental"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Mental illness*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="seven"  />
-                <Text style={{color:'grey', marginTop:3}}>Sleep disorders*</Text>
+                <RNCheckBox control={control} name="sleep"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Sleep disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="eight"  />
-                <Text style={{color:'grey', marginTop:3}}>Muscular diseases & disorders*</Text>
+                <RNCheckBox control={control} name="muscular"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Muscular diseases & disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="nine"  />
-                <Text style={{color:'grey', marginTop:3}}>Neurological diseases & disorders*</Text>
+                <RNCheckBox control={control} name="neurological"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Neurological diseases & disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="ten"  />
-                <Text style={{color:'grey', marginTop:3}}>Ocular diseases & disorders*</Text>
+                <RNCheckBox control={control} name="ocular"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Ocular diseases & disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="eleven"  />
-                <Text style={{color:'grey', marginTop:3}}>Skin diseases & disorders*</Text>
+                <RNCheckBox control={control} name="skin"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Skin diseases & disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="twelve"  />
-                <Text style={{color:'grey', marginTop:3}}>Strokes*</Text>
+                <RNCheckBox control={control} name="strokes"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Strokes*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="thirteen"  />
-                <Text style={{color:'grey', marginTop:3}}>Autoimmune diseases & disorders*</Text>
+                <RNCheckBox control={control} name="autoImmune"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Autoimmune diseases & disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="fourteen"  />
-                <Text style={{color:'grey', marginTop:3}}>Bone and joint diseases & disorders*</Text>
+                <RNCheckBox control={control} name="bone"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Bone and joint diseases & disorders*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="fifteen"  />
-                <Text style={{color:'grey', marginTop:3}}>Cancers*</Text>
+                <RNCheckBox control={control} name="cancer"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Cancers*</Text>
             </View>
             <View style={{flexDirection:'row', paddingRight:32, marginTop:5, marginBottom:5, marginTop:15}}>
-                <RNCheckBox control={control} name="sixteen"  />
-                <Text style={{color:'grey', marginTop:3}}>Gastrointestinal diseases & disorders*</Text>
+                <RNCheckBox control={control} name="gastroIntestinal"  />
+                <Text style={{color:'grey', marginTop:3, marginLeft:10}}>Gastrointestinal diseases & disorders*</Text>
             </View>
-
-
-
             <View style={{marginTop:5}}>
             <TouchableOpacity style={styles.buttonBase} onPress={handleSubmit(onSubmit)}>
                 <Text style={{color:'white'}}>Next</Text>

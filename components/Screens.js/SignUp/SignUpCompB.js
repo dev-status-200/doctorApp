@@ -2,11 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SectionList } from 'react-native';
 import AntdIcons from 'react-native-vector-icons/AntDesign';
 import { useForm, useWatch } from "react-hook-form";
-import RNInput from "../../Shared/Form/TextInput";
+//import RNInput from "../../Shared/Form/TextInput";
+import RNNumber from "../../Shared/Form/NumberInput";
 import Radio from "../../Shared/Form/Radio";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LogBox } from 'react-native';
-LogBox.ignoreAllLogs();
+// import { LogBox } from 'react-native';
+// LogBox.ignoreAllLogs();
 
 const Header = (props) => {
     return(
@@ -40,12 +41,11 @@ const SignUpCompB = ({setForm, onSubmit}) => {
         }
     });
     const values = useWatch({ control })
-    const Label = ({txt}) => <Text style={{ color: 'grey' }}>{txt}</Text>
 
-    const Data = [
-        {id: 0, labelView: <Label txt={"Yes"} />, },
-        {id: 1, labelView: <Label txt={"No"} />, },
-    ];
+    const Data = useMemo(()=>([
+        {id: 0, label: "Yes" },
+        {id: 1, label: "No" },
+    ]), [])
 
     useEffect(() => {
         getData()
@@ -54,14 +54,13 @@ const SignUpCompB = ({setForm, onSubmit}) => {
     const getData = async () => {
         try {
           const value = await AsyncStorage.getItem('formB');
-          console.log(value)
           if (value !== null) {
             reset(JSON.parse(value))
           }
         } catch (e) {
           // error reading value
         }
-      };
+    };
     
   return (
     <React.Fragment>
@@ -70,7 +69,6 @@ const SignUpCompB = ({setForm, onSubmit}) => {
         keyExtractor={(item, index) => item + index}
         renderItem={({item}) => (
         <View style={{paddingLeft:22, paddingRight:22, paddingTop:10, paddingBottom:20}}>
-
             <View style={[styles.row, styles.mt2, { position:'relative', zIndex:2 }]}>
                 <View style={styles.xl}>
                     <Radio  control={control} 
@@ -91,7 +89,7 @@ const SignUpCompB = ({setForm, onSubmit}) => {
             </View>
             <View style={[styles.row, styles.mt2]}>
                 <View style={styles.md}>
-                    <RNInput control={control} name="childNo" placeholder={""} label={"How many Children ---"} required={true} />
+                    <RNNumber control={control} name="childNo" placeholder={""} label={"How many Children ?"} required={true} />
                 </View>
             </View>
             <View style={[styles.row, styles.mt2, { position:'relative', zIndex:2 }]}>

@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { useController, Controller } from "react-hook-form";
 import React from 'react';
 
-const RNInput = ({label, control, name, placeholder, required}) => {
+const RNNumberInput = ({label, control, name, placeholder, required}) => {
 
     const { field } = useController({ control,  defaultValue:'',  name });
     
@@ -16,10 +16,10 @@ const RNInput = ({label, control, name, placeholder, required}) => {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-                type="email"
                 style={styles.input}
                 placeholder={placeholder}
                 onBlur={onBlur}
+                keyboardType="numeric"
                 onChangeText={onChange}
                 value={value.toString()}
                 placeholderTextColor={'grey'}
@@ -31,7 +31,7 @@ const RNInput = ({label, control, name, placeholder, required}) => {
     )
 }
 
-export default React.memo(RNInput)
+export default React.memo(RNNumberInput)
 
 const styles = StyleSheet.create({
     container: {

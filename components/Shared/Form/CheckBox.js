@@ -1,5 +1,5 @@
 import { Controller } from "react-hook-form";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
+import CheckBox from '@mesameerahmed/react-native-check-box'
 import React from 'react';
 
 const RNCheckBox = ({control, name, required}) => {
@@ -9,10 +9,11 @@ const RNCheckBox = ({control, name, required}) => {
         control={control}
         rules={{ required: required }}
         render={({ field: { onChange, onBlur, value } }) => (
-            <BouncyCheckbox
+            <CheckBox
                 onBlur={onBlur}
-                onPress={onChange}
                 isChecked={value}
+                onClick={onChange}
+                checkBoxColor={'#D86321'}
             />
         )}
         name={name}

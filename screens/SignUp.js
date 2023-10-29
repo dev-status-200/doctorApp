@@ -4,12 +4,13 @@ import SignUpCompA from "../components/Screens.js/SignUp/SignUpCompA";
 import SignUpCompB from "../components/Screens.js/SignUp/SignUpCompB";
 import SignUpCompC from "../components/Screens.js/SignUp/SignUpCompC";
 import SignUpCompD from "../components/Screens.js/SignUp/SignUpCompD";
+import Pin from "../components/Screens.js/SignUp/Pin";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignUp = ({navigation}) => {
 
   const [form, setForm] = useState("A");
-
+  
   const onSubmitA = async(data) => {
     await storeData(data, "formA");
     setForm("B")
@@ -23,29 +24,21 @@ const SignUp = ({navigation}) => {
     setForm("D")
   }
   const onSubmitD = async(data) => {
-    console.log("Here")
     await storeData(data, "formD");
+    setForm("Pin")
   }
 
   const storeData = async (value, key) => {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(value));
-      await getData(key)
     } catch (e) {
-      console.log(e)
+      
     }
   };
 
-  const getData = async (key) => {
-    try {
-      const value = await AsyncStorage.getItem(key);
-      if (value !== null) {
-        console.log(JSON.parse(value))
-      }
-    } catch (e) {
-      // error reading value
-    }
-  };
+  const SignUpComplete = () => {
+    navigation.navigate("ChoosePlan")
+  }
 
   return (
     <View style={styles.container}>
@@ -53,6 +46,7 @@ const SignUp = ({navigation}) => {
       {form=="B" && <SignUpCompB onSubmit={onSubmitB} setForm={setForm} />}
       {form=="C" && <SignUpCompC onSubmit={onSubmitC} setForm={setForm} />}
       {form=="D" && <SignUpCompD onSubmit={onSubmitD} setForm={setForm} />}
+      {form=="Pin" && <Pin setForm={setForm} SignUpComplete={SignUpComplete} />}
     </View>
   )
 }

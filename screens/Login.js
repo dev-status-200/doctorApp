@@ -1,8 +1,13 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import LoginComponent from '../components/Screens.js/Login/LoginComponent';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
+
+  useEffect(() => {
+    AsyncStorage.setItem("firstBoot",'false');
+  }, [])
 
   return (
     <View style={styles.container}>

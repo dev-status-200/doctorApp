@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import { CountryFlag } from 'react-native-flag-creator';
 import DropDownPicker from 'react-native-dropdown-picker';
 import React, { useState, useEffect } from 'react';
 import codes from "../../../jsonData/codes.json";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
-
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import axios from "axios";
+import urls from "../../../urls.json";
 const bgColor = '#EEEEEE';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginComponent = ({navigation}) => {
 
@@ -13,43 +15,63 @@ const LoginComponent = ({navigation}) => {
     const [value, setValue] = useState("pk");
     const [items, setItems] = useState(codes);
     const [number, setNumber] = useState('');
-    
+    const [load, setLoad] = useState(false);
+
+    const handleSubmit = () => {
+        setLoad(true)
+        axios.get(`${urls.local_url}/auth/clientOtpSend`,{
+            headers:{email:number}
+        })
+        .then(async(x)=>{
+            if(x.data.status=="error"){
+                Alert.alert('Error', 'No such kind of email exists!', [
+                  {text: 'OK', onPress: () => null},
+                ]
+              );
+            } else if(x.data.status=="success") {
+                await AsyncStorage.setItem("email", number);
+                navigation.navigate("OtpScreen");
+            }
+            setLoad(false)
+        })
+    }
+
   return (
     <View>
         <Text style={styles.blackTxt}>Log In</Text>
-        <Text style={styles.gretTxt}>Enter your phone number to Login</Text>
+        <Text style={styles.gretTxt}>Enter your Email to Login</Text>
         <View style={styles.divider}></View>
-        <Text style={[styles.blackTxt, {fontSize:14}]}>Phone Number</Text>
+        <Text style={[styles.blackTxt, {fontSize:14}]}>Email</Text>
         <View style={{flexDirection:'row', width:'100%', marginTop:5}}>
-            <View style={styles.greyContainer}>
+            {/* <View style={styles.greyContainer}>
                 <View style={{width:"19%", paddingTop:"3%"}}>
                     <CountryFlag countryCode={value} style={styles.countryFlag} />
                 </View>
                 <View style={{width:"31%"}}>
                 <DropDownPicker
-                        open={open}
-                        value={value}
-                        items={items}
-                        setOpen={setOpen}
-                        theme='LIGHT'
-                        setValue={setValue}
-                        setItems={setItems}
-                        searchable={true}
-                        onChangeValue={(value) => {
-                            console.log(value);
-                        }}
-                        style={{
-                            backgroundColor:bgColor,
-                            borderColor:bgColor,
-                            width:80
-                        }}
-                        textStyle={{
-                            borderColor:bgColor
-                        }}
-                        labelStyle={{
-                            borderColor:bgColor
-                        }}
-                    />
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={setOpen}
+                    theme='LIGHT'
+                    setValue={setValue}
+                    setItems={setItems}
+                    searchable={true}
+                    onChangeValue={(value) => {
+                        console.log(value);
+                    }}
+                    style={{
+                        backgroundColor:bgColor,
+                        borderColor:bgColor,
+                        width:80
+                    }}
+                    textStyle={{
+                        borderColor:bgColor
+                    }}
+                    labelStyle={{
+                        borderColor:bgColor
+                    }}
+                />
                 </View>
                 <View style={styles.vertical}></View>
                 <View style={{width:'50%', paddingLeft:5, paddingTop:1}}>
@@ -62,6 +84,18 @@ const LoginComponent = ({navigation}) => {
                     placeholderTextColor={"silver"}
                 />
                 </View>
+            </View> */}
+            <View style={styles.greyContainer}>
+                <View style={{width:'100%', paddingLeft:5, paddingTop:1}}>
+                <TextInput
+                    autoFocus={true}
+                    style={[styles.input, {paddingLeft:20}]}
+                    onChangeText={setNumber}
+                    value={number}
+                    placeholder="Email"
+                    placeholderTextColor={"silver"}
+                />
+                </View>
             </View>
             <View style={{width:"2%"}}></View>
             <View style={styles.thumbContainer}>
@@ -69,11 +103,12 @@ const LoginComponent = ({navigation}) => {
             </View>
         </View>
         <View style={{marginTop:20, justifyContent:"center", alignItems:'center'}}>
-            <TouchableOpacity style={styles.buttonBase}>
-                <Text style={styles.btnText}>Continue</Text>
+            <TouchableOpacity style={styles.buttonBase} onPress={handleSubmit} disabled={load?true:false}>
+                <Text style={styles.btnText}>{!load?"Continue":<ActivityIndicator color={"white"} />}</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity style={{borderBottomWidth:1, borderBottomColor:'grey', marginTop:20, paddingBottom:1}}
+            <TouchableOpacity disabled={load?true:false}
+                style={{borderBottomWidth:1, borderBottomColor:'grey', marginTop:20, paddingBottom:1}}
                 onPress={()=>navigation.navigate("Signup")}
             >
                 <Text style={{color:"black", fontSize:16}}>Sign Up</Text>
