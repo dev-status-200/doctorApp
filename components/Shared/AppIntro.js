@@ -1,12 +1,5 @@
 import React, { useState, useRef, memo } from 'react';
-import {
-  Text,
-  View,
-  Image,
-  StyleSheet,
-  useColorScheme,
-  TouchableOpacity
-} from 'react-native';
+import { Text, View, Image, StyleSheet, useColorScheme, TouchableOpacity } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import AntdIcons from 'react-native-vector-icons/AntDesign';
@@ -106,20 +99,22 @@ function AppIntro({setHide}) {
 }
 const styles = StyleSheet.create({
   logo: {
-    width: 346,
-    height: 336,
-    marginTop:"6%"
+    width: "95%",
+    height: 356,
   },
   buttonBase: {
-    width: 100,
+    width: 120,
     height: 40,
     backgroundColor: '#D86321',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    position:'relative',
+    bottom:"155%"
   },
   btnText:{
-    color:'white'
+    color:'white',
+    fontWeight:'700'
   },
   slide:{
     flex:1,
@@ -132,14 +127,14 @@ const styles = StyleSheet.create({
     width:'3%',
     height:5,
     position:'relative',
-    bottom:"85%"
+    bottom:"90%"
   },
   activeDotStyle:{
     backgroundColor:'grey',
     width:'11%',
     height:5,
     position:'relative',
-    bottom:"85%"
+    bottom:"90%"
   },
   slideHeading:{
     fontSize:24,
@@ -147,7 +142,8 @@ const styles = StyleSheet.create({
   },
   slideText:{
     marginTop:10,
-    fontSize:16
+    fontSize:16,
+    color:'grey'
   },
   circleBtn:{
     backgroundColor:"#D86321",
@@ -166,7 +162,9 @@ const styles = StyleSheet.create({
     fontWeight:"800",
     borderBottomWidth:1,
     borderBottomColor:'silver',
-    paddingBottom:0
+    paddingBottom:0,
+    position:'relative',
+    bottom:"200%"
   }
 });
 

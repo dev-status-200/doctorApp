@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import Entypo from "react-native-vector-icons/Entypo";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const SearchBar = () => {
+const SearchBar = ({serSearch}) => {
 
     const [username, setUsername] = useState("");
 
@@ -14,7 +14,6 @@ const SearchBar = () => {
 
     async function getValue(){
         const values = JSON.parse(await AsyncStorage.getItem("login"));
-        console.log(values.user);
         setUsername(values.user);
     }
     
@@ -38,7 +37,12 @@ const SearchBar = () => {
             </View>
         </View>
         <View style={{padding:"3%", marginTop:15}}>
-            <TextInput style={styles.searchBar} placeholder='Search' />
+            {/* <TextInput style={styles.searchBar} placeholder='Search' disabled={true} /> */}
+            <TouchableOpacity style={{padding:15, paddingLeft:50, backgroundColor:'white', borderRadius:50}}
+                onPress={()=>serSearch(true)}
+            >
+                <Text>Search</Text>
+            </TouchableOpacity>
             <EvilIcons name={"search"} color={'orange'} style={{position:'absolute', bottom:"50%", left:"5%"}} size={35} />
         </View>
     </View>

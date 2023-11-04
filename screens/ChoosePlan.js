@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import React from 'react';
 import ChoosePlan from '../components/Screens.js/ChoosePlan';
 

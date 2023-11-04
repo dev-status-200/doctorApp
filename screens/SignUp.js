@@ -6,6 +6,8 @@ import SignUpCompC from "../components/Screens.js/SignUp/SignUpCompC";
 import SignUpCompD from "../components/Screens.js/SignUp/SignUpCompD";
 import Pin from "../components/Screens.js/SignUp/Pin";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
+import urls from "../urls.json";
 
 const SignUp = ({navigation}) => {
 
@@ -36,8 +38,11 @@ const SignUp = ({navigation}) => {
     }
   };
 
-  const SignUpComplete = () => {
-    navigation.navigate("ChoosePlan")
+  const SignUpComplete = async(email) => {
+    await axios.get(`https://curly-familiar-scorpion.glitch.me/auth/clientOtpSend`,{
+      headers:{email:email}
+    })
+    navigation.navigate("OtpScreen");
   }
 
   return (

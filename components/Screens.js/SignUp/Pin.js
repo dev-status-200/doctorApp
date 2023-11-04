@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useRef, useState, useEffect } from 'react';
 import urls from "../../../urls.json";
@@ -66,41 +66,23 @@ const Pin = ({setForm, SignUpComplete}) => {
 
   const handleSignUp = async(a,b,c,d) => {
     let clientData = await {...JSON.parse(a)};
-    setEmail(clientData.email)
+    setEmail(clientData.email);
+    await AsyncStorage.setItem("email", clientData.email);
     axios.post(`${urls.local_url}/clients/create`,{
       client:{...JSON.parse(a), ...JSON.parse(b)},
       disease:{...JSON.parse(d)},
       relatives:{...JSON.parse(c)}
-    }).then((x)=>{
+    }).then(async(x)=>{
+      console.log(x.data)
       if(x.data.status=="email already exists!"){
-        createTwoButtonAlert()
+        createTwoButtonAlert();
+      } else {
+        SignUpComplete(clientData.email);
+        //await AsyncStorage.setItem("login", JSON.stringify(x.data));
       }
     })
   };
 
-  const handleSumit = async() => {
-    let code = await ''+
-    in1.current.value +
-    in2.current.value +
-    in3.current.value +
-    in4.current.value +
-    in5.current.value +
-    in6.current.value;
-    axios.get(`${urls.local_url}/auth/clientLogin`,{
-      headers:{
-        'email':email, 
-        'password':code
-      }
-    }).then(async(x)=>{
-      if(x.data.status=="success"){
-        setModalVisible(true);
-        await AsyncStorage.setItem("login", JSON.stringify(x.data));
-        await delay(2000);
-        SignUpComplete()
-        setModalVisible(false);
-      }
-    })
-  }
 
   const makeCode = (a, current, value) => {
     (a!=null && value!="")?a.current.focus():null;
@@ -115,48 +97,8 @@ const Pin = ({setForm, SignUpComplete}) => {
 
   return (
   <View style={styles.container}>
-    {modalVisible && 
-    <View style={styles.modalBack}>
-      <ModalView 
-        modalVisible={modalVisible} 
-        setModalVisible={setModalVisible} 
-        status={'success'} 
-        message={'Successfully Verified!'} 
-      /> 
-    </View>
-    }
-    <Text style={{fontSize:30, color:'black', marginTop:'5%'}}>Enter Your Pin</Text>
-    <Text style={{fontSize:15, color:'grey'}}>Enter your pin to continue</Text>
-    
-    <View style={{paddingTop:"25%"}}>
-    <Text style={{color:'black', fontSize:15}}>Code<Text style={{color:'red'}}> *</Text></Text>
-    <View style={{justifyContent:'space-between', flexDirection:'row', marginTop:10}}>
-      <TextInput keyboardType="numeric" secureTextEntry={true} style={styles.box} ref={in1} onChangeText={(e)=>makeCode(in2,in1, e)} autoFocus={true} />
-      <TextInput keyboardType="numeric" secureTextEntry={true} style={styles.box} ref={in2} onChangeText={(e)=>makeCode(in3,in2, e)} />
-      <TextInput keyboardType="numeric" secureTextEntry={true} style={styles.box} ref={in3} onChangeText={(e)=>makeCode(in4,in3, e)} />
-      <TextInput keyboardType="numeric" secureTextEntry={true} style={styles.box} ref={in4} onChangeText={(e)=>makeCode(in5,in4, e)} />
-      <TextInput keyboardType="numeric" secureTextEntry={true} style={styles.box} ref={in5} onChangeText={(e)=>makeCode(in6,in5, e)} />
-      <TextInput keyboardType="numeric" secureTextEntry={true} style={styles.box} ref={in6} onChangeText={(e)=>makeCode(null,in6, e)} />
-    </View>
-    {/* <View style={{alignItems:'flex-end', marginTop:10}}><Text></Text></View> */}
-    </View>
-
-    <View style={{alignItems:'center', marginTop:"20%"}}>
-      <Text style={{color:'#D86321', fontSize:20}}>{minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</Text>
-    </View>
-
-    <View>
-      <TouchableOpacity style={styles.buttonBase} onPress={handleSumit}>
-        <Text style={{color:'white'}}>Submit</Text>
-      </TouchableOpacity>
-    </View>
-
-    {resend && <View style={{alignItems:'center'}}>
-      <TouchableOpacity onPress={()=>{setForm("D")}}>
-        <Text style={styles.linkBtn}>Back and Check Details</Text>
-      </TouchableOpacity>
-    </View>}
-    
+      <ActivityIndicator color={'#D86321'} size={'large'} />
+      <Text>Loading</Text>
   </View>
   )
 }
@@ -165,6 +107,8 @@ export default React.memo(Pin)
 
 const styles = StyleSheet.create({
   container:{
+    justifyContent:'center',
+    alignItems:'center',
     padding:20,
     flex:1
   },

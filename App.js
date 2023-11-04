@@ -12,6 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PaperProvider } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import OtpScreen from './screens/OtpScreen';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,10 +29,10 @@ function HomeScreen({navigation}) {
   }
   
   return (
-    <View style={{flex:1}}>
-      { hide && <Login navigation={navigation} /> }
-      { !hide && <AppIntro setHide={setHide} /> }
-    </View>
+  <View style={{flex:1}}>
+    { hide && <Login navigation={navigation} /> }
+    { !hide && <AppIntro setHide={setHide} /> }
+  </View>
   );
 }
 
@@ -41,10 +42,12 @@ function App() {
     await delay(2000)
     SplashScreen.hide();
   }
+
   useEffect(() => { hideScreen() }, []);
 
   return (
   <SafeAreaView style={[styles.container, {backgroundColor: "white"}]}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <StatusBar barStyle={'dark-content'} backgroundColor={"white"} />
     <PaperProvider>
       <NavigationContainer>
@@ -57,6 +60,7 @@ function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
+    </GestureHandlerRootView>
   </SafeAreaView>
   );
 }

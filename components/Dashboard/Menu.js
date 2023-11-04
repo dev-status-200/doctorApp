@@ -1,33 +1,31 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react';
-import FontAwesome6 from "react-native-vector-icons/FontAwesome6"
 
 const Menu = () => {
   return (
     <View>
-
         <View style={{flexDirection:'row', justifyContent:'space-around'}}>
             <TouchableOpacity style={styles.btnContainer}>
                 <View style={styles.iconContainer}>
-                <FontAwesome6 name={'house-medical-circle-check'} style={styles.icons} />
+                <Image source={require('../../assets/menu/one.png')} style={{height:"100%", width:"100%"}} />
                 </View>
                 <Text style={styles.label}>Dentist</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnContainer}>
                 <View style={styles.iconContainer}>
-                <FontAwesome6 name={'house-medical-circle-check'} style={styles.icons} />
+                <Image source={require('../../assets/menu/two.png')} style={{height:"100%", width:"100%"}} />
                 </View>
                 <Text style={styles.label}>General</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnContainer}>
                 <View style={styles.iconContainer}>
-                <FontAwesome6 name={'house-medical-circle-check'} style={styles.icons} />
+                <Image source={require('../../assets/menu/three.png')} style={{height:"100%", width:"100%"}} />
                 </View>
                 <Text style={styles.label}>Nutrition</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnContainer}>
                 <View style={styles.iconContainer}>
-                <FontAwesome6 name={'house-medical-circle-check'} style={styles.icons} />
+                <Image source={require('../../assets/menu/four.png')} style={{height:"100%", width:"100%"}} />
                 </View>
                 <Text style={styles.label}>Online Visit</Text>
             </TouchableOpacity>
@@ -36,25 +34,25 @@ const Menu = () => {
         <View style={{flexDirection:'row', justifyContent:'space-around', marginTop:20}}>
             <TouchableOpacity style={styles.btnContainer}>
                 <View style={styles.iconContainer}>
-                <FontAwesome6 name={'house-medical-circle-check'} style={styles.icons} />
+                <Image source={require('../../assets/menu/five.png')} style={{height:"100%", width:"100%"}} />
                 </View>
                 <Text style={styles.label}>Neurologist</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnContainer}>
                 <View style={styles.iconContainer}>
-                <FontAwesome6 name={'house-medical-circle-check'} style={styles.icons} />
+                <Image source={require('../../assets/menu/six.png')} style={{height:"100%", width:"100%"}} />
                 </View>
                 <Text style={styles.label}>Opthalogist</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnContainer}>
                 <View style={styles.iconContainer}>
-                <FontAwesome6 name={'house-medical-circle-check'} style={styles.icons} />
+                <Image source={require('../../assets/menu/seven.png')} style={{height:"100%", width:"100%"}} />
                 </View>
                 <Text style={styles.label}>Pediatrician</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnContainer}>
                 <View style={styles.iconContainer}>
-                <FontAwesome6 name={'house-medical-circle-check'} style={styles.icons} />
+                <Image source={require('../../assets/menu/eight.png')} style={{height:"100%", width:"100%"}} />
                 </View>
                 <Text style={styles.label}>More</Text>
             </TouchableOpacity>
@@ -75,15 +73,13 @@ const styles = StyleSheet.create({
         fontSize:25
     },
     iconContainer:{
-        backgroundColor:'#dcdfe0', 
-        padding:15, 
-        borderRadius:100, 
         height:60, 
         width:60
     },
     btnContainer:{
         justifyContent:'center', 
         alignItems:'center', 
-        alignContent:"center"
+        alignContent:"center",
+        width:"30%"
     }
 })

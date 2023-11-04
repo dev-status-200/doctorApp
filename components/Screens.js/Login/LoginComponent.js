@@ -19,7 +19,7 @@ const LoginComponent = ({navigation}) => {
 
     const handleSubmit = () => {
         setLoad(true)
-        axios.get(`${urls.local_url}/auth/clientOtpSend`,{
+        axios.get(`https://curly-familiar-scorpion.glitch.me/auth/clientOtpSend`,{
             headers:{email:number}
         })
         .then(async(x)=>{
@@ -106,14 +106,14 @@ const LoginComponent = ({navigation}) => {
             <TouchableOpacity style={styles.buttonBase} onPress={handleSubmit} disabled={load?true:false}>
                 <Text style={styles.btnText}>{!load?"Continue":<ActivityIndicator color={"white"} />}</Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity disabled={load?true:false}
                 style={{borderBottomWidth:1, borderBottomColor:'grey', marginTop:20, paddingBottom:1}}
                 onPress={()=>navigation.navigate("Signup")}
             >
                 <Text style={{color:"black", fontSize:16}}>Sign Up</Text>
             </TouchableOpacity>
-            
+
         </View>
   </View>
   )
@@ -140,8 +140,12 @@ const styles = StyleSheet.create({
         marginTop:10,
         marginBottom:10,
     },
-    greyContainer:{flexDirection:'row', backgroundColor:bgColor, width:'83%', borderRadius:5},
-    vertical:{backgroundColor:'silver', width:1, marginTop:11,marginBottom:11},
+    greyContainer:{
+        flexDirection:'row', backgroundColor:bgColor, width:'83%', borderRadius:5
+    },
+    vertical:{
+        backgroundColor:'silver', width:1, marginTop:11,marginBottom:11
+    },
     countryFlag: {
         height: 23,
         width: 35,
@@ -152,7 +156,9 @@ const styles = StyleSheet.create({
     input: {
         color:'#36454F',
     },
-    thumbContainer:{borderColor:'orange', borderWidth:1, width:'15%', borderRadius:5, padding:"2%"},
+    thumbContainer:{
+        borderColor:'orange', borderWidth:1, width:'15%', borderRadius:5, padding:"2%"
+    },
     buttonBase: {
         width: "100%",
         height: 40,
