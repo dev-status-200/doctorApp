@@ -4,7 +4,6 @@ import AntdIcons from 'react-native-vector-icons/AntDesign';
 import { useForm, useWatch } from "react-hook-form";
 import RNInput from "../../Shared/Form/TextInput";
 import RNSelect from "../../Shared/Form/Select";
-import RNCheckBox from "../../Shared/Form/CheckBox";
 import ErrorA from '../../Shared/ErrorA';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -12,13 +11,13 @@ const Header = (props) => {
     return(
     <>
     <View style={{flexDirection:'row', padding:15, justifyContent:'space-between'}}>
-        <View style={{width:"25%"}}>
-            <TouchableOpacity onPress={()=> props.navigation.navigate("Home")}>
-                <AntdIcons name="leftcircle" color={"#D86321"} size={30} />
+        <View style={{width:"25%", paddingTop:5}}>
+            <TouchableOpacity onPress={()=> props.navigation.navigate("Dashboard")}>
+            <AntdIcons name="leftcircle" color={"#D86321"} size={20} />
             </TouchableOpacity>
         </View>
         <View style={{width:"50%", padding:2}}>
-            <Text style={{textAlign:'center', fontSize:22, color:'black', fontWeight:'500', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>{props.name}</Text>
+            <Text style={{textAlign:'center', fontSize:22, color:'black', fontWeight:'500', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Profile</Text>
         </View>
         <View style={{width:"25%"}}></View>
     </View>
@@ -34,7 +33,6 @@ const SignUpCompA = ({navigation, onSubmit}) => {
             agree:true,
         }
     });
-    const values = useWatch({ control })
 
     useEffect(() => {
         getData()
@@ -44,10 +42,9 @@ const SignUpCompA = ({navigation, onSubmit}) => {
         try {
           const value = await AsyncStorage.getItem('formA');
           if (value !== null) {
-            reset(JSON.parse(value))
+            reset(JSON.parse(value));
           }
         } catch (e) {
-          // error reading value
         }
     };
 
@@ -137,16 +134,7 @@ const SignUpCompA = ({navigation, onSubmit}) => {
                 </View>
             </View>
             
-            <View style={{flexDirection:'row', paddingRight:32, marginTop:20, marginBottom:10, marginTop:15}}>
-                <RNCheckBox control={control} name="agree" required={true} />
-                <Text style={{color:'grey', marginLeft:6, fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>
-                    By creating your account you have to agree with our 
-                    <Text style={{fontWeight:'600', color:'black', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}> Terms and Conditions</Text>
-                </Text>
-            </View>
-            {errors.agree && <ErrorA txt={"Terms and Conditions shoulde be agreed"} />}
-            
-            <View style={{marginTop:10}}>
+            <View style={{marginTop:"30%"}}>
             <TouchableOpacity style={styles.buttonBase} onPress={handleSubmit(onSubmit)}>
                 <Text style={{color:'white', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Next</Text>
             </TouchableOpacity>

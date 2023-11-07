@@ -24,7 +24,7 @@ const LoginComponent = ({navigation}) => {
         })
         .then(async(x)=>{
             if(x.data.status=="error"){
-                Alert.alert('Error', 'No such kind of email exists!', [
+                Alert.alert('Error', <Text style={{fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>No such kind of email exists!</Text>, [
                   {text: 'OK', onPress: () => null},
                 ]
               );
@@ -111,7 +111,7 @@ const LoginComponent = ({navigation}) => {
                 style={{borderBottomWidth:1, borderBottomColor:'grey', marginTop:20, paddingBottom:1}}
                 onPress={()=>navigation.navigate("Signup")}
             >
-                <Text style={{color:"black", fontSize:16}}>Sign Up</Text>
+                <Text style={{color:"black", fontSize:16, fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Sign Up</Text>
             </TouchableOpacity>
 
         </View>
@@ -126,12 +126,14 @@ const styles = StyleSheet.create({
         color:'#36454F',
         fontSize:25,
         fontWeight:'400',
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     },
     gretTxt:{
         color:'#76848D',
         fontSize:15,
         fontWeight:'400',
-        marginTop:5
+        marginTop:5,
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     },
     divider:{
         backgroundColor:'silver',
@@ -155,6 +157,7 @@ const styles = StyleSheet.create({
     },
     input: {
         color:'#36454F',
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     },
     thumbContainer:{
         borderColor:'orange', borderWidth:1, width:'15%', borderRadius:5, padding:"2%"
@@ -177,6 +180,7 @@ const styles = StyleSheet.create({
         elevation: 5,
       },
       btnText:{
-        color:'white'
+        color:'white',
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
       },
 })

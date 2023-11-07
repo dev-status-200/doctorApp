@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
         backgroundColor:'#F6F7F9',
         borderTopLeftRadius:25,
         borderBottomLeftRadius:25,
-        paddingLeft:50
+        paddingLeft:50,
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     },
     selectBar:{
         backgroundColor:'#F6F7F9',
@@ -156,10 +157,12 @@ const styles = StyleSheet.create({
         fontSize:20,
         color:'#36454F',
         marginBottom:10,
-        fontWeight:'700'
+        fontWeight:'700',
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     },
     specialties:{
         color:'#36454F',
-        fontSize:16
+        fontSize:16,
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     }
 })

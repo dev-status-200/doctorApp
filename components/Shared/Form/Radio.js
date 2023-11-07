@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     label:{
         color:'black',
         fontSize:17,
-        marginBottom:10
+        marginBottom:10,
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     },
 });

@@ -70,12 +70,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   },
   modalText: {
     textAlign: 'center',
     fontSize:25,
     marginTop:20,
-    color:'black'
+    color:'black',
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   },
 });
 

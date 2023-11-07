@@ -98,7 +98,7 @@ const Pin = ({setForm, SignUpComplete}) => {
   return (
   <View style={styles.container}>
       <ActivityIndicator color={'#D86321'} size={'large'} />
-      <Text>Loading</Text>
+      <Text style={{fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Loading</Text>
   </View>
   )
 }
@@ -119,7 +119,8 @@ const styles = StyleSheet.create({
     borderRadius:5,
     textAlign:'center',
     color:'black',
-    fontSize:20
+    fontSize:20,
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   },
   buttonBase: {
     marginTop:20,
@@ -136,7 +137,8 @@ const styles = StyleSheet.create({
     fontSize:15, 
     fontWeight:'500', 
     borderBottomWidth:1, 
-    borderBottomColor:'grey'
+    borderBottomColor:'grey',
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   },
   modalBack:{
     position:'absolute', height:"150%", width:"150%",

@@ -49,6 +49,7 @@ export default React.memo(RNSelect)
 const styles = StyleSheet.create({
     label:{
         color:'black',
-        fontSize:17
+        fontSize:17,
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     },
 });

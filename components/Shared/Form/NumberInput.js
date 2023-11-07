@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
     },
     label:{
         color:'black',
-        fontSize:17
+        fontSize:17,
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     },
     input:{
         borderColor:'#E6E6E6', borderWidth:1, borderRadius:10, paddingLeft:17, marginTop:5, height:40, color:'black'

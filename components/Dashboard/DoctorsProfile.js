@@ -25,14 +25,17 @@ const DoctorsProfile = ({doctors, search, term}) => {
       <EvilIcons name={"user"} color={'grey'} size={60} style={{position:'relative', bottom:3}} />
     </View>
     <View  style={{width:'65%', paddingTop:2}}>
-      <Text style={{color:'black', fontSize:15, fontWeight:"600"}}>Dr. {x.firstName} {x.lastName}</Text>
+      <Text style={{color:'black', fontSize:15, fontWeight:"600", fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Dr. {x.firstName} {x.lastName}</Text>
       <View style={{flexDirection:'row'}}>
         {x.Specializations?.map((y, i) => {
           return(
-          <Text key={y.id} style={{color:'silver'}}>{i!=0?', ':''}{y.name}</Text>
+          <Text key={y.id} style={{color:'silver', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>{i!=0?', ':''}{y.name}</Text>
         )})}
       </View>
-      <Text style={{fontSize:12, marginTop:10}}><FontAwesome color="gold" name={"star"} /> Reviews | <Entypo color={"#CC5500"} name={"location-pin"} /> 0.5 KM Away</Text>
+      <Text style={{fontSize:12, marginTop:10, fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>
+        <FontAwesome color="gold" name={"star"} />
+         Reviews | <Entypo color={"#CC5500"} name={"location-pin"} /> 0.5 KM Away
+      </Text>
     </View>
     <View style={{width:'15%', alignItems:'flex-end', padding:7}}>
       <AntDesign name={"hearto"} color={'grey'} size={17} />
@@ -80,6 +83,7 @@ const styles = StyleSheet.create({
   btnText:{
     color:'#CC5500',
     fontSize:12,
-    fontWeight:"600"
+    fontWeight:"600",
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   }
 })

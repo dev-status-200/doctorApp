@@ -10,8 +10,8 @@ const Slider = () => {
     <ImageBackground source={require('../../assets/menu/book.png')} resizeMode="cover" style={{height:150}}>
         <View style={{flexDirection:'row', justifyContent:'space-between', padding:15}}>
         <View style={{width:'70%'}}>
-                <Text style={{color:'white', fontSize:18, fontWeight:'600'}}>Medical Checks!</Text>
-                <Text style={{color:'white', marginBottom:10, marginTop:7}}>
+                <Text style={{color:'white', fontSize:18, fontWeight:'600', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Medical Checks!</Text>
+                <Text style={{color:'white', marginBottom:10, marginTop:7, fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>
                     {"Check your health condition regularly to minimize the incidence of disease in the future..."}
                 </Text>
                 <TouchableOpacity>
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
         textAlign:'center',
         width:'50%',
         padding:5,
-        borderRadius:7
+        borderRadius:7,
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     }
 })
 

@@ -6,7 +6,9 @@ import AppIntro from "./components/Shared/AppIntro"
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
 import ChoosePlan from './screens/ChoosePlan';
+import ChangeImage from './screens/ChangeImage';
 import Dashboard from './screens/Dashboard';
+import Profile from './screens/Profile';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PaperProvider } from 'react-native-paper';
@@ -54,6 +56,8 @@ function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Dashboard" component={Dashboard} />
+          <Stack.Screen name="ChangeImage" component={ChangeImage} />
+          <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="ChoosePlan" component={ChoosePlan} />
           <Stack.Screen name="Signup" component={SignUp} />
           <Stack.Screen name="OtpScreen" component={OtpScreen} />
@@ -68,6 +72,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   },
 });
 export default React.memo(App);

@@ -17,7 +17,9 @@ const Header = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={{width:"70%", padding:2}}>
-                <Text style={{textAlign:'center', fontSize:22, color:'black', fontWeight:'500', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>{props.name}</Text>
+                <Text style={{textAlign:'center', fontSize:22, color:'black', fontWeight:'500', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>
+                    Edit Family Details
+                </Text>
             </View>
             <View style={{width:"15%"}}></View>
         </View>
@@ -42,7 +44,7 @@ const SignUpCompD = ({setForm, onSubmit}) => {
         control,
         name: "children"
     });
-    const values = useWatch({ control });
+    // const values = useWatch({ control });
 
     useEffect(() => {
         getData()
@@ -61,9 +63,7 @@ const SignUpCompD = ({setForm, onSubmit}) => {
   return (
     <View style={styles.container}>
     <Header name={"Add Your Family Details"} setForm={setForm} />
-    <SectionList
-        sections={list}
-        keyExtractor={(item, index) => item + index}
+    <SectionList sections={list} keyExtractor={(item, index) => item + index}
         renderItem={({item}) => (
         <View style={{paddingLeft:22, paddingRight:22, paddingTop:10, paddingBottom:20}}>
             <Text style={{color:'black', fontSize:20, marginBottom:10, fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Spouse Information</Text>
@@ -75,7 +75,6 @@ const SignUpCompD = ({setForm, onSubmit}) => {
                     <RNInput control={control} name="lastName" placeholder={"Last Name"} label={" "} />
                 </View>
             </View>
-
             <View style={[styles.row, styles.mt2, { position:'relative', zIndex:2 }]}>
                 <View style={styles.sm}>
                     <RNSelect control={control} name="day" placeholder={"Day"} label={"Date of Birth"}
@@ -107,7 +106,6 @@ const SignUpCompD = ({setForm, onSubmit}) => {
                     />
                 </View>
             </View>
-
             <View style={[styles.row, styles.mt2, { position:'relative', zIndex:1 }]}>
                 <View style={styles.xl}>
                     <RNSelect control={control} name="disease" placeholder={"Select Here"} label={"Disease"}
@@ -121,7 +119,6 @@ const SignUpCompD = ({setForm, onSubmit}) => {
             </View>
             <Text style={{color:'black', fontSize:20, marginTop:15, fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Child Information</Text>
             <View style={{backgroundColor:'silver', height:1, marginLeft:5, marginRight:5, marginTop:10, marginBottom:0}}></View>
-            
             {fields.map((field, index) => (
                 <View key={field.id}>
                     <View style={{alignItems:'flex-end'}}>
@@ -184,7 +181,6 @@ const SignUpCompD = ({setForm, onSubmit}) => {
             <TouchableOpacity onPress={()=>append({name:''})}>
                 <Text style={styles.linkBtn}>+ Add Another</Text>
             </TouchableOpacity>
-
             <View style={{marginTop:5}}>
             <TouchableOpacity style={styles.buttonBase} onPress={handleSubmit(onSubmit)}>
                 <Text style={{color:'white', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Next</Text>

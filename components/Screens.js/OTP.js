@@ -90,11 +90,11 @@ const OTP = ({navigation}) => {
       /> 
     </View>
     }
-    <Text style={{fontSize:30, color:'black', marginTop:'5%'}}>Enter Your Pin</Text>
-    <Text style={{fontSize:15, color:'grey'}}>Enter your pin to continue</Text>
+    <Text style={{fontSize:30, color:'black', marginTop:'5%', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Enter Your Pin</Text>
+    <Text style={{fontSize:15, color:'grey', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Enter your pin to continue</Text>
     
     <View style={{paddingTop:"25%"}}>
-    <Text style={{color:'black', fontSize:15}}>Code<Text style={{color:'red'}}> *</Text></Text>
+    <Text style={{color:'black', fontSize:15, fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Code<Text style={{color:'red'}}> *</Text></Text>
     <View style={{justifyContent:'space-between', flexDirection:'row', marginTop:10}}>
       <TextInput keyboardType="numeric" secureTextEntry={true} style={styles.box} ref={in1} onChangeText={(e)=>makeCode(in2,in1, e)} autoFocus={true} />
       <TextInput keyboardType="numeric" secureTextEntry={true} style={styles.box} ref={in2} onChangeText={(e)=>makeCode(in3,in2, e)} />
@@ -107,12 +107,12 @@ const OTP = ({navigation}) => {
     </View>
 
     <View style={{alignItems:'center', marginTop:"20%"}}>
-      <Text style={{color:'#D86321', fontSize:20}}>{minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</Text>
+      <Text style={{color:'#D86321', fontSize:20, fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>{minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</Text>
     </View>
 
     <View>
       <TouchableOpacity style={styles.buttonBase} onPress={handleSumit} disabled={load?true:false}>
-        <Text style={{color:'white'}}>{!load?"Continue":<ActivityIndicator color={"white"} />}</Text>
+        <Text style={{color:'white', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>{!load?"Continue":<ActivityIndicator color={"white"} />}</Text>
       </TouchableOpacity>
     </View>
 
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     width:'14%',
     borderRadius:5,
     textAlign:'center',
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   },
   buttonBase: {
     marginTop:20,
@@ -157,7 +158,8 @@ const styles = StyleSheet.create({
     fontSize:15, 
     fontWeight:'500', 
     borderBottomWidth:1, 
-    borderBottomColor:'grey'
+    borderBottomColor:'grey',
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   },
   modalBack:{
     position:'absolute', height:"150%", width:"150%",

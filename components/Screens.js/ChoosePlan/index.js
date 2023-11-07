@@ -5,10 +5,10 @@ const ChoosePlan = ({navigation}) => {
   return (
     <View style={{padding:20}}>
         <View style={{marginBottom:"10%"}}>
-        <Text style={{color:'white', fontSize:32, fontWeight:'700', marginBottom:'5%'}}>
+        <Text style={{color:'white', fontSize:32, fontWeight:'700', marginBottom:'5%', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>
             {"For Your Healthy & \nBetter Life, \nSubscribe Now"}
         </Text>
-        <Text style={{color:'silver', lineHeight:22}}>
+        <Text style={{color:'silver', lineHeight:22, fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>
             Lorem ipsum dolor sit amet consectetur. 
             Dictum pellentesque ut proin eget cursus gravida mattis nulla quis.
             Faucibus in mauris malesuada tempus sed ut consectetur.
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
         elevation: 5,
       },
       btnText:{
-        color:'white'
+        color:'white',
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
       },
 })

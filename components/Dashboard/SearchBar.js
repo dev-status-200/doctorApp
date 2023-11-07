@@ -3,14 +3,18 @@ import React, { useEffect, useState } from 'react';
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import Entypo from "react-native-vector-icons/Entypo";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
-const SearchBar = ({serSearch}) => {
+const SearchBar = ({serSearch, navigation}) => {
 
     const [username, setUsername] = useState("");
 
-    useEffect(() => {
-      getValue();
-    }, [])
+    useFocusEffect(
+        React.useCallback(() => {
+            getValue();
+          return () => { }
+        }, [])
+      );
 
     async function getValue(){
         const values = JSON.parse(await AsyncStorage.getItem("login"));
@@ -20,17 +24,21 @@ const SearchBar = ({serSearch}) => {
   return (
     <View style={styles.barContainer}>
         <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-            <View style={{width:'18%'}}>
+            <TouchableOpacity style={{width:'18%'}}
+                //onPress={()=>navigation.navigate("ChangeImage")}
+            >
                 <EvilIcons name={"user"} color={'white'} size={60} style={{position:'relative', bottom:3}} />
-            </View>
-            <View style={{width:"64%"}}>
-                <Text style={{color:'white', fontSize:20, fontWeight:'600'}}>Welcome {username}</Text>
-                <Text style={{color:'white', marginTop:0}}>
+            </TouchableOpacity>
+            <TouchableOpacity style={{width:"64%"}}
+                onPress={()=>navigation.navigate("Profile")}
+            >
+                <Text style={{color:'white', fontSize:20, fontWeight:'600', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Welcome {username}</Text>
+                <Text style={{color:'white', marginTop:0, fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>
                     <Entypo name="location-pin" />{" "}
-                    <Text >Your Location Here</Text>{"  "}
+                    <Text style={{fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Your Location Here</Text>{"  "}
                     <Entypo name={"edit"} color={'orange'} size={10}  />
                 </Text>
-            </View>
+            </TouchableOpacity>
             <View style={{width:"18%", flexDirection:'row'}}>
                 <EvilIcons name={"bell"} color={'white'} size={30} />
                 <EvilIcons name={"heart"} color={'white'} size={30} />
@@ -41,7 +49,7 @@ const SearchBar = ({serSearch}) => {
             <TouchableOpacity style={{padding:15, paddingLeft:50, backgroundColor:'white', borderRadius:50}}
                 onPress={()=>serSearch(true)}
             >
-                <Text>Search</Text>
+                <Text style={{fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Search</Text>
             </TouchableOpacity>
             <EvilIcons name={"search"} color={'orange'} style={{position:'absolute', bottom:"50%", left:"5%"}} size={35} />
         </View>

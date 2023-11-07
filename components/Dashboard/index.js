@@ -39,7 +39,7 @@ const Dashboard = ({navigation}) => {
     <>
       <ScrollView>
         <StatusBar barStyle={'dark-content'} backgroundColor={"white"} />
-        <SearchBar serSearch={serSearch} />
+        <SearchBar serSearch={serSearch} navigation={navigation} />
         <View style={{padding:15}}>
           <Text style={[styles.dashText, { marginBottom:20 }]}>Appointment Today</Text>
           <Slider/>
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   dashText:{
     color:'#303030',
     fontSize:15,
-    fontWeight:"600"
+    fontWeight:"600",
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   }
 });

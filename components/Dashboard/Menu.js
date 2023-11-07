@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     label:{
         textAlign:'center',
         color:'black',
+        fontFamily:'FontsFree-Net-ProximaNova-Regular'
     },
     icons:{
         color:'#D86321',

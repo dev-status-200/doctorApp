@@ -114,7 +114,8 @@ const styles = StyleSheet.create({
   },
   btnText:{
     color:'white',
-    fontWeight:'700'
+    fontWeight:'700',
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   },
   slide:{
     flex:1,
@@ -138,12 +139,14 @@ const styles = StyleSheet.create({
   },
   slideHeading:{
     fontSize:24,
-    color:'black'
+    color:'black',
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   },
   slideText:{
     marginTop:10,
     fontSize:16,
-    color:'grey'
+    color:'grey',
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   },
   circleBtn:{
     backgroundColor:"#D86321",
@@ -164,7 +167,8 @@ const styles = StyleSheet.create({
     borderBottomColor:'silver',
     paddingBottom:0,
     position:'relative',
-    bottom:"200%"
+    bottom:"200%",
+    fontFamily:'FontsFree-Net-ProximaNova-Regular'
   }
 });
 

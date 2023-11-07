@@ -19,7 +19,7 @@ const Header = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={{width:"50%", padding:2}}>
-                <Text style={{textAlign:'center', fontSize:22, color:'black', fontWeight:'500', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>{props.name}</Text>
+                <Text style={{textAlign:'center', fontSize:22, color:'black', fontWeight:'500', fontFamily:'FontsFree-Net-ProximaNova-Regular'}}>Profile</Text>
             </View>
             <View style={{width:"25%"}}></View>
         </View>
@@ -33,11 +33,11 @@ const SignUpCompB = ({setForm, onSubmit}) => {
     const { control, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             married: 0,
-            children: 0,
-            childNo: 0,
-            smoke: 0,
             tobacco: 0,
-            alcohol: 0,
+            children:0,
+            childNo: 0,
+            smoke:   0,
+            alcohol: 0
         }
     });
     const values = useWatch({ control })
@@ -45,25 +45,24 @@ const SignUpCompB = ({setForm, onSubmit}) => {
     const Data = useMemo(()=>([
         {id: 0, label: "Yes" },
         {id: 1, label: "No" },
-    ]), [])
+    ]), []);
 
     useEffect(() => {
-        getData()
+        getData();
     }, [])
-    
+
     const getData = async () => {
         try {
           const value = await AsyncStorage.getItem('formB');
           if (value !== null) {
-            reset(JSON.parse(value))
+            reset(JSON.parse(value));
           }
         } catch (e) {
-          // error reading value
         }
     };
     
   return (
-    <React.Fragment>
+    <View style={styles.container}>
     <Header name={"Add your Details"} setForm={setForm} />
     <SectionList sections={[{data: ['Pizza']}]}
         keyExtractor={(item, index) => item + index}
@@ -128,7 +127,7 @@ const SignUpCompB = ({setForm, onSubmit}) => {
         </View>
         )}
     />
-    </React.Fragment>
+    </View>
 )};
 
 const styles = StyleSheet.create({
